@@ -6,25 +6,29 @@
 import Foundation
 import UIKit
 
+#if os(iOS)
 extension UIScreen {
     // 屏幕宽度
-    public static var screenWidth: CGFloat {
-        return UIScreen.main.bounds.width
-    }
+    public static var width: CGFloat { return UIScreen.main.bounds.width }
     // 屏幕高度
-    public static var screenHeight: CGFloat {
-        return UIScreen.main.bounds.height
-    }
+    public static var height: CGFloat { return UIScreen.main.bounds.height }
     // 屏幕的最小边框
-    public static var screenMinLength: CGFloat {
-        return min(screenWidth, screenHeight)
-    }
+    public static var minLength: CGFloat { return min(width, height) }
     // 屏幕的最大边框
-    public static var screenMaxLength: CGFloat {
-        return max(screenWidth, screenHeight)
-    }
+    public static var maxLength: CGFloat { return max(width, height) }
 
-    public static func isScreenSizeEqual(_ size: CGSize) -> Bool {
-        return UIScreen.main.bounds.size.equalTo(size)
-    }
+    public static func isScreenSizeEqual(_ size: CGSize) -> Bool { return UIScreen.main.bounds.size.equalTo(size) }
+}
+#endif
+
+extension UIScreen {
+    public var width: CGFloat { return self.bounds.width }
+
+    public var height: CGFloat { return self.bounds.height }
+
+    public var minLength: CGFloat { return min(width, height) }
+
+    public var maxLength: CGFloat { return max(width, height) }
+
+    public func isScreenSizeEqual(to size: CGSize) -> Bool { return self.bounds.size.equalTo(size) }
 }
